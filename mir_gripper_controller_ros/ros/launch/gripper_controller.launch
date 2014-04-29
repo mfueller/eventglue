@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node pkg="mir_gripper_controller_ros" type="gripper_controller_node" name="controller" ns="/arm_1/gripper_controller/coordinator" output="screen">
+    
+        <remap from="~position_command" to="/arm_1/gripper_controller/position_command"/>
+        
+        <remap from="~coordinator/event/jointmonitor/out" to="/joint_position_monitors/event_in"/>
+        <remap from="~coordinator/event/jointmonitor/in" to="/joint_position_monitors/event_out"/>
+        
+        <remap from="~coordinator/event/jointctl/out" to="~joint_controller/event/in"/>
+        <remap from="~coordinator/event/jointctl/in" to="~joint_controller/event/out"/>
+        
+        <remap from="~coordinator/event/out" to="/arm_1/gripper_controller/event/in"/>
+        <remap from="~coordinator/event/in" to="/arm_1/gripper_controller/event/out"/>
+        
+        <remap from="~joint_controller/port/pin_joint_state" to="/arm_1/gripper_controller/set_target_joint_position"/>
+        
+        <remap from="~position_command" to="/arm_1/gripper_controller/position_command"/>
+        
+    </node>
+    
+    <node pkg="mcr_manipulation_monitors" type="joint_position_monitors_node"
+          name="joint_position_monitors" output="screen">
+        <remap from="~joint_states" to="/joint_states"/>
+        <remap from="~configuration" to="/arm_1/gripper_controller/set_target_joint_position"/>
+        
+        <!-- the cycle rate of the node (in seconds) -->
+        <param name="loop_rate" value="0.1"/>
+
+        <!-- tolerance for the joint positions -->
+        <param name="epsilon" value="0.0015"/>
+    </node>
+    
+
+    <node pkg="mir_gripper_controller_ros" type="gripper_command_controller" name="gripper_controller" ns="/arm_1/" output="screen">
+            <rosparam>
+                joints: [gripper_finger_joint_l, gripper_finger_joint_r]
+            </rosparam>
+	</node>
+	
+</launch>

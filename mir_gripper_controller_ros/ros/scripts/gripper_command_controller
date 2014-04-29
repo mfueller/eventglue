@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+
+import mir_gripper_controller_ros.gripper_command_controller
+
+if __name__ == '__main__':
+    mir_gripper_controller_ros.gripper_command_controller.main()
