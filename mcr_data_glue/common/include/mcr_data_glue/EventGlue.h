@@ -14,5 +14,4 @@
 #include "message_converter/MessageConverter.h"
 
 
-
 #endif /* EVENTTOOL_H_ */

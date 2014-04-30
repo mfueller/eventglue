@@ -12,14 +12,14 @@
 
 #include <kdl/jntarray.hpp>
 
-#include "mcr_data_glue/ros/RosEventGlue.h"
+#include "mcr_data_glue_ros/RosEventGlue.h"
+
 
 namespace mir_industrial {
 namespace manipulation {
 
 class JointPositionMonitorProxy {
 
-	//PortOut<>
 public:
 
 	EventTarget& event_in_target;
@@ -29,7 +29,7 @@ public:
 	JointPositionMonitorProxy():
 			event_in_target(ROS_EVENT_SINK("joint_position_monitor/event/out")),
 			event_out(ROS_EVENT_SOURCE("joint_position_monitor/event/in")),
-			pin_joint_position(ROS_PORT_SOURCE(sensor_msgs::JointState, KDL::JntArray, "joint_position_monitor/port/in/joint_position"))
+			pin_joint_position(ROS_PORT_SOURCE(sensor_msgs::JointState, KDL::JntArray, "/test"))
 	{}
 
 

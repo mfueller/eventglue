@@ -11,6 +11,7 @@ public:
 	static TO convert(FROM msg);
 };
 
+/*
 template <typename FROM, typename TO>
 inline TO MessageConverter<FROM, TO>::convert(FROM msg) {
 	TO msg_new;
@@ -22,5 +23,6 @@ inline TO MessageConverter<FROM, TO>::convert(FROM msg) {
 	ROS_ERROR(ss.str().c_str());
 	return msg_new;
 }
+*/
 
 #endif

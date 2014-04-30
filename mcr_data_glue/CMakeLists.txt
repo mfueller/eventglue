@@ -15,13 +15,13 @@ catkin_package(
     sensor_msgs
     brics_actuator
   INCLUDE_DIRS
-    ros/include
+    common/include
   LIBRARIES
     mcr_data_glue
 )
 
 include_directories(
-  ros/include
+  common/include
    ${EIGEN_INCLUDE_DIRS}
 )
 
@@ -30,14 +30,6 @@ link_directories(
   ${orocos_kdl_LIBRARY_DIRS}
 )
 
-add_library(mcr_data_glue
-  ros/src/RosEventGlue.cpp
-)
-
-target_link_libraries(mcr_data_glue
-  ${catkin_LIBRARIES}
-  ${orocos_kdl_LIBRARIES}  
-)
 
 #install(TARGETS mcr_data_glue
 #  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
@@ -45,7 +37,7 @@ target_link_libraries(mcr_data_glue
 #  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 #)
 
-install(DIRECTORY ros/include/${PROJECT_NAME}/
+install(DIRECTORY common/include/${PROJECT_NAME}/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
   FILES_MATCHING PATTERN "*.h"
 )

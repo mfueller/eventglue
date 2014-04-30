@@ -1,9 +1,7 @@
 #ifndef EVENTGLUE_EVENT_H_
 #define EVENTGLUE_EVENT_H_
 
-#include <boost/function.hpp>
-#include <boost/bind.hpp>
-#include <boost/signals2.hpp>
+#include "Port.h"
 
 #include <string.h>
 
@@ -13,12 +11,8 @@
 #define EVENT_SOURCE(CMD) \
 		CMD
 
-
-typedef boost::function<void (std::string)> EventTarget;
-typedef boost::signals2::signal<void (std::string)> EventSource;
-
-
-
+typedef InPort<std::string>::type EventTarget;
+typedef OutPort<std::string>::type EventSource;
 
 
 inline EventSource& operator>>(EventSource& lhs, EventTarget const& rhs) {

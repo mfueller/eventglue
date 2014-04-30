@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(mir_gripper_controller_ros)
 
-find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs brics_actuator mir_gripper_controller)
+find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs brics_actuator mir_gripper_controller mcr_data_glue_ros)
 find_package(eigen REQUIRED)
 find_package(orocos_kdl REQUIRED)
 
@@ -22,6 +22,7 @@ include_directories(
   ros/include
    ${EIGEN_INCLUDE_DIRS}
    ${mcr_data_glue_INCLUDE_DIRS}
+   ${mcr_data_glue_ros_INCLUDE_DIRS}
    ${mir_gripper_controller_INCLUDE_DIRS}
    
 )
@@ -35,13 +36,13 @@ link_directories(
 
 add_executable(gripper_controller_node
   ros/src/YouBotGripperNode.cpp
-  ros/src/JointPositionMonitorProxy.cpp
+  ros/src/JointPositionCommandWrapper.cpp
 )
 
 target_link_libraries(gripper_controller_node
   ${catkin_LIBRARIES}
   ${orocos_kdl_LIBRARIES}  
-  ${mcr_data_glue_LIBRARIES}
+  ${mcr_data_glue_ros_LIBRARIES}
   ${mir_gripper_controller_LIBRARIES} 
 )
 
