@@ -17,7 +17,7 @@
 
 #include "mcr_data_glue/EventGlue.h"
 
-#include "JointPositionMonitorProxy.h"
+#include "mir_gripper_controller/JointPositionMonitorProxy.h"
 
 namespace mir_industrial {
 namespace manipulation {
