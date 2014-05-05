@@ -42,7 +42,7 @@ class RosPortSink : public RosPort {
 
 public:
 
-	typename InPort<MY_TYPE>::type ros_publisher;
+	typename PortSink<MY_TYPE>::type ros_publisher;
 
 	RosPortSink(std::string topic_name) {
 		std::cout << "RosPortSink::RosPortSink(topic): advertises: " << topic_name << std::endl;
@@ -73,7 +73,7 @@ class RosPortSource : public RosPort {
 	ros::Subscriber subscriber;
 public:
 
-	typename OutPort<MY_TYPE>::type ros_topic_signal;
+	typename PortSource<MY_TYPE>::type ros_topic_signal;
 
 	RosPortSource(std::string topic_name) {
 		std::cout << "RosInPort::RosInPort(topic, name): registered to: " << topic_name << std::endl;

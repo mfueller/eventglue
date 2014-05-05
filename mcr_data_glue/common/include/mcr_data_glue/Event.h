@@ -11,8 +11,8 @@
 #define EVENT_SOURCE(CMD) \
 		CMD
 
-typedef InPort<std::string>::type EventTarget;
-typedef OutPort<std::string>::type EventSource;
+typedef PortSink<std::string>::type EventTarget;
+typedef PortSource<std::string>::type EventSource;
 
 
 inline EventSource& operator>>(EventSource& lhs, EventTarget const& rhs) {

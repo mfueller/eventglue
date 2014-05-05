@@ -35,7 +35,7 @@ public:
 
 
 	template<typename ROS_TYPE, typename MY_TYPE>
-		typename OutPort<MY_TYPE>::type& port_from_ros_topic(std::string topic_name) {
+		typename PortSource<MY_TYPE>::type& port_from_ros_topic(std::string topic_name) {
 
 		RosPortSource<ROS_TYPE, MY_TYPE>* in_port = new RosPortSource<ROS_TYPE, MY_TYPE>(topic_name);
 
@@ -45,7 +45,7 @@ public:
 	}
 
 	template<typename ROS_TYPE, typename MY_TYPE>
-		typename InPort<MY_TYPE>::type& port_to_ros_topic(std::string topic_name) {
+		typename PortSink<MY_TYPE>::type& port_to_ros_topic(std::string topic_name) {
 
 		RosPortSink<ROS_TYPE, MY_TYPE>* in_port = new RosPortSink<ROS_TYPE, MY_TYPE>(topic_name);
 

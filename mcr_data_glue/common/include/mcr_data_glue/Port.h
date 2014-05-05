@@ -7,7 +7,7 @@
 #include <boost/signals2.hpp>
 
 template <class T>
-class InPort
+class PortSink
 {
 public:
     typedef boost::function<void (T)> type;
@@ -15,7 +15,7 @@ public:
 
 
 template <class T>
-class OutPort
+class PortSource
 {
 public:
     typedef boost::signals2::signal<void (T)> type;
@@ -24,7 +24,7 @@ public:
 
 
 template <class T>
-inline typename OutPort<T>::type& operator>>(typename OutPort<T>::type& lhs, const typename InPort<T>::type& rhs) {
+inline typename PortSource<T>::type& operator>>(typename PortSource<T>::type& lhs, const typename PortSink<T>::type& rhs) {
 	lhs.connect(rhs);
 	return lhs;
 };
