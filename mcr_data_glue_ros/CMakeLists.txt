@@ -31,14 +31,14 @@ link_directories(
   ${orocos_kdl_LIBRARY_DIRS}
 )
 
-add_library(mcr_data_glue_ros
-  ros/src/RosEventGlue.cpp
-)
+#add_library(mcr_data_glue_ros
+#  ros/src/RosEventGlue.cpp
+#)
 
-target_link_libraries(mcr_data_glue_ros
-  ${catkin_LIBRARIES}
-  ${orocos_kdl_LIBRARIES}  
-)
+#target_link_libraries(mcr_data_glue_ros
+#  ${catkin_LIBRARIES}
+#  ${orocos_kdl_LIBRARIES}  
+#)
 
 #install(TARGETS mcr_data_glue
 #  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}

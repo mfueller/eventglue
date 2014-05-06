@@ -46,8 +46,6 @@ YouBotGripperNode::YouBotGripperNode() {
 	EVENT_SOURCE(joint_position_controller->event_out)
 			>> EVENT_SINK(&JointPositionCoordinator::e_cb_jointctl_in, joint_position_coordinator);
 
-
-
 	// Coordinator is allowed to communicate with ROS
 	ROS_EVENT_SOURCE("coordinator/event/in")
 			>> EVENT_SINK(&JointPositionCoordinator::e_cmd_in, joint_position_coordinator);

@@ -19,7 +19,7 @@
 #include "mcr_data_glue_ros/message_converter/ros_msgs.h"
 
 #define ROS_PORT_SOURCE(ROS_TOPIC, IN_TOPIC, TOPIC) \
-		RosEventGlue::instance.port_from_ros_topic<ROS_TOPIC, IN_TOPIC>(TOPIC)
+		RosEventGlue::port_from_ros_topic<ROS_TOPIC, IN_TOPIC>(TOPIC)
 
 
 #define PORT_SOURCE(CMD) \
@@ -29,20 +29,14 @@
 		boost::bind(CLASS, OBJECT, _1)
 
 
-// non template class for storing pointer into vector
-class RosPort {
-
-};
-
-
 template <typename ROS_TYPE, typename MY_TYPE>
-class RosPortSink : public RosPort {
+class RosPortSink : public PortSink<MY_TYPE>::type {
 	std::string topic_name;
 	ros::Publisher publisher;
 
 public:
 
-	typename PortSink<MY_TYPE>::type ros_publisher;
+	//typename PortSink<MY_TYPE>::type ros_publisher;
 
 	RosPortSink(std::string topic_name) {
 		std::cout << "RosPortSink::RosPortSink(topic): advertises: " << topic_name << std::endl;
@@ -50,7 +44,7 @@ public:
 		ros::NodeHandle n("~");
 		this->topic_name = topic_name;
 		this->publisher = n.advertise<ROS_TYPE>(this->topic_name, 1);
-		ros_publisher = boost::bind(&RosPortSink<ROS_TYPE, MY_TYPE>::callback, this, _1);
+		//ros_publisher = boost::bind(&RosPortSink<ROS_TYPE, MY_TYPE>::callback, this, _1);
 
 	}
 
@@ -68,12 +62,12 @@ public:
 
 
 template <typename ROS_TYPE, typename MY_TYPE>
-class RosPortSource : public RosPort {
+class RosPortSource : public PortSource<MY_TYPE>::type {
 	std::string topic_name;
 	ros::Subscriber subscriber;
 public:
 
-	typename PortSource<MY_TYPE>::type ros_topic_signal;
+	//typename PortSource<MY_TYPE>::type ros_topic_signal;
 
 	RosPortSource(std::string topic_name) {
 		std::cout << "RosInPort::RosInPort(topic, name): registered to: " << topic_name << std::endl;
@@ -90,7 +84,7 @@ public:
 
 	void event_callback(ROS_TYPE event) {
 		MY_TYPE msg_new = MessageConverter<ROS_TYPE, MY_TYPE>::convert(event);
-		this->ros_topic_signal(msg_new);
+		(*this)(msg_new);
 	}
 
 

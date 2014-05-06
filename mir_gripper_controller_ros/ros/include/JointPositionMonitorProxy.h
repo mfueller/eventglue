@@ -27,8 +27,8 @@ public:
 	PortSource<KDL::JntArray>::type& pin_joint_position;
 
 	JointPositionMonitorProxy():
-			event_in_target(ROS_EVENT_SINK("joint_position_monitor/event/out")),
-			event_out(ROS_EVENT_SOURCE("joint_position_monitor/event/in")),
+			event_in_target(ROS_EVENT_SINK("joint_position_monitor/event/in")),
+			event_out(ROS_EVENT_SOURCE("joint_position_monitor/event/out")),
 			pin_joint_position(ROS_PORT_SOURCE(sensor_msgs::JointState, KDL::JntArray, "/test"))
 	{}
 

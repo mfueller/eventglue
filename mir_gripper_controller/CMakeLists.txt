@@ -31,7 +31,6 @@ include_directories(
 link_directories(
   ${catkin_LIBRARY_DIRS}
   ${orocos_kdl_LIBRARY_DIRS}
-  ${mcr_data_glue_LIBRARY_DIRS}
 )
 
 add_library(gripper_controller
@@ -42,7 +41,6 @@ add_library(gripper_controller
 target_link_libraries(gripper_controller
   ${catkin_LIBRARIES}
   ${orocos_kdl_LIBRARIES}  
-  ${mcr_data_glue_LIBRARIES}
 )
 
 install(DIRECTORY common/include/${PROJECT_NAME}/

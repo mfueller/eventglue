@@ -6,52 +6,44 @@
 
 
 class RosEventGlue {
-protected:
-	std::vector<RosEventSource*> ros_event_sources;
-	std::vector<RosEventSink*> ros_event_sinks;
-
-	std::vector<RosPort*> ros_in_ports;
-	std::vector<RosPort*> ros_out_ports;
 
 public:
 
-	static RosEventGlue instance;
-
-	EventSource& ros_event_source(std::string topic_name) {
+	static EventSource& ros_event_source(std::string topic_name) {
 
 		RosEventSource* event_source = new RosEventSource(topic_name);
-		ros_event_sources.push_back(event_source);
+		//ros_event_sources.push_back(event_source);
 
-		return event_source->ros_topic_signal;
+		return *event_source;
 	}
 
-	EventTarget& ros_event_sink(std::string topic_name) {
+	static EventTarget& ros_event_sink(std::string topic_name) {
 
 		RosEventSink* event_sink = new RosEventSink(topic_name);
-		ros_event_sinks.push_back(event_sink);
+		//ros_event_sinks.push_back(event_sink);
 
-		return event_sink->ros_publisher;
+		return *event_sink;
 	}
 
 
 	template<typename ROS_TYPE, typename MY_TYPE>
-		typename PortSource<MY_TYPE>::type& port_from_ros_topic(std::string topic_name) {
+		static typename PortSource<MY_TYPE>::type& port_from_ros_topic(std::string topic_name) {
 
 		RosPortSource<ROS_TYPE, MY_TYPE>* in_port = new RosPortSource<ROS_TYPE, MY_TYPE>(topic_name);
 
-		ros_in_ports.push_back(in_port);
+		//ros_in_ports.push_back(in_port);
 
-		return in_port->ros_topic_signal;
+		return *in_port;
 	}
 
 	template<typename ROS_TYPE, typename MY_TYPE>
-		typename PortSink<MY_TYPE>::type& port_to_ros_topic(std::string topic_name) {
+		static typename PortSink<MY_TYPE>::type& port_to_ros_topic(std::string topic_name) {
 
-		RosPortSink<ROS_TYPE, MY_TYPE>* in_port = new RosPortSink<ROS_TYPE, MY_TYPE>(topic_name);
+		RosPortSink<ROS_TYPE, MY_TYPE>* in_port(new RosPortSink<ROS_TYPE, MY_TYPE>(topic_name));
 
-		ros_out_ports.push_back(in_port);
+		//ros_out_ports.push_back(in_port);
 
-		return in_port->ros_publisher;
+		return *in_port;
 	}
 
 };
