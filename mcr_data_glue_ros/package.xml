@@ -18,6 +18,6 @@
   <run_depend>roscpp</run_depend>
   <run_depend>sensor_msgs</run_depend>
   <run_depend>brics_actuator</run_depend>
-   <run_depend>mcr_data_glue</run_depend>
+  
    
 </package>

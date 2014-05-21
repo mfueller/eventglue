@@ -16,8 +16,6 @@ catkin_package(
     brics_actuator
   INCLUDE_DIRS
     common/include
-  LIBRARIES
-    mcr_data_glue
 )
 
 include_directories(
