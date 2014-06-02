@@ -21,12 +21,15 @@
 #define ROS_PORT_SOURCE(ROS_TOPIC, IN_TOPIC, TOPIC) \
 		RosEventGlue::port_from_ros_topic<ROS_TOPIC, IN_TOPIC>(TOPIC)
 
+#define ROS_PORT_SINK(ROS_TOPIC, IN_TOPIC, TOPIC) \
+		RosEventGlue::port_to_ros_topic<ROS_TOPIC, IN_TOPIC>(TOPIC)
 
-#define PORT_SOURCE(CMD) \
-		CMD
 
-#define PORT_SINK(CLASS, OBJECT) \
-		boost::bind(CLASS, OBJECT, _1)
+//#define PORT_SOURCE(CMD) \
+//		CMD
+//
+//#define PORT_SINK(CLASS, OBJECT) \
+//		boost::bind(CLASS, OBJECT, _1)
 
 
 template <typename ROS_TYPE, typename MY_TYPE>
@@ -38,7 +41,8 @@ public:
 
 	//typename PortSink<MY_TYPE>::type ros_publisher;
 
-	RosPortSink(std::string topic_name) {
+	RosPortSink(std::string topic_name) :
+		PortSink<MY_TYPE>::type(boost::bind(&RosPortSink<ROS_TYPE, MY_TYPE>::callback, this, _1)) {
 		std::cout << "RosPortSink::RosPortSink(topic): advertises: " << topic_name << std::endl;
 
 		ros::NodeHandle n("~");

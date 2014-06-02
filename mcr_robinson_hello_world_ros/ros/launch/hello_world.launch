@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node pkg="mcr_robinson_hello_world_ros" type="hello_world_node" name="hello_world" output="screen">
+        
+    </node>
+    
+	
+</launch>

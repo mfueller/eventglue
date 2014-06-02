@@ -6,6 +6,12 @@
 #include <boost/bind.hpp>
 #include <boost/signals2.hpp>
 
+#define PORT_SOURCE(CMD) \
+		CMD
+
+#define PORT_SINK(CLASS, OBJECT) \
+		boost::bind(CLASS, OBJECT, _1)
+
 template <class T>
 class PortSink
 {

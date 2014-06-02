@@ -6,6 +6,7 @@ find_package(eigen REQUIRED)
 find_package(orocos_kdl REQUIRED)
 
 set( CMAKE_CXX_FLAGS "-Wno-enum-compare " )
+set( CMAKE_BUILD_TYPE Debug)
 
 catkin_python_setup()
 
@@ -34,28 +35,28 @@ link_directories(
   ${mir_gripper_controller_DIRS} 
 )
 
-add_executable(gripper_controller_node
-  ros/src/YouBotGripperNode.cpp
-  ros/src/JointPositionCommandWrapper.cpp
-)
+#add_executable(gripper_controller_node
+#  ros/src/YouBotGripperNode.cpp
+ # ros/src/JointPositionCommandWrapper.cpp
+#)
 
-target_link_libraries(gripper_controller_node
-  ${catkin_LIBRARIES}
-  ${orocos_kdl_LIBRARIES}  
-  ${mcr_robinson_ros_LIBRARIES}
-  ${mir_gripper_controller_LIBRARIES} 
-)
+#target_link_libraries(gripper_controller_node
+#  ${catkin_LIBRARIES}
+#  ${orocos_kdl_LIBRARIES}  
+#  ${mcr_robinson_ros_LIBRARIES}
+#  ${mir_gripper_controller_LIBRARIES} 
+#)
 
 
-install(PROGRAMS
-  ros/scripts/gripper_command_controller
-  ros/scripts/gripper_command_controller_basic
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
+#install(PROGRAMS
+#  ros/scripts/gripper_command_controller
+#  ros/scripts/gripper_command_controller_basic
+#  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+#)
 
-install(DIRECTORY ros/launch/
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/ros/launch
-)
+#install(DIRECTORY ros/launch/
+#  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/ros/launch
+#)
 
 
 
