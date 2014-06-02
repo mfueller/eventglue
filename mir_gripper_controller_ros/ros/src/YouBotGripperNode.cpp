@@ -36,6 +36,7 @@ YouBotGripperNode::YouBotGripperNode() {
 	//coordinator <-> monitor proxy
 	EVENT_SOURCE(joint_position_coordinator->event_cmd_joint_monitors_out)
 		>> EVENT_SOURCE(joint_position_monitor->event_in_target);
+
 	EVENT_SOURCE(joint_position_monitor->event_out)
 		>> EVENT_SINK(&JointPositionCoordinator::e_cb_monitor_in, joint_position_coordinator);
 
