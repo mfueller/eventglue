@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(mcr_data_glue_ros)
+project(mcr_robinson_ros)
 
-find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs brics_actuator mcr_data_glue)
+find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs brics_actuator mcr_robinson)
 find_package(eigen REQUIRED)
 find_package(orocos_kdl REQUIRED)
 
@@ -29,16 +29,16 @@ link_directories(
   ${orocos_kdl_LIBRARY_DIRS}
 )
 
-#add_library(mcr_data_glue_ros
+#add_library(mcr_robinson_ros
 #  ros/src/RosEventGlue.cpp
 #)
 
-#target_link_libraries(mcr_data_glue_ros
+#target_link_libraries(mcr_robinson_ros
 #  ${catkin_LIBRARIES}
 #  ${orocos_kdl_LIBRARIES}  
 #)
 
-#install(TARGETS mcr_data_glue
+#install(TARGETS mcr_robinson
 #  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(mcr_data_glue)
+project(mcr_robinson)
 
 find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs brics_actuator)
 find_package(eigen REQUIRED)
@@ -29,7 +29,7 @@ link_directories(
 )
 
 
-#install(TARGETS mcr_data_glue
+#install(TARGETS mcr_robinson
 #  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

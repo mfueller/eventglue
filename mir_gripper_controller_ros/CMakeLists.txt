@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(mir_gripper_controller_ros)
 
-find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs brics_actuator mir_gripper_controller mcr_data_glue_ros)
+find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs brics_actuator mir_gripper_controller mcr_robinson_ros)
 find_package(eigen REQUIRED)
 find_package(orocos_kdl REQUIRED)
 
@@ -21,8 +21,8 @@ catkin_package(
 include_directories(
   ros/include
    ${EIGEN_INCLUDE_DIRS}
-   ${mcr_data_glue_INCLUDE_DIRS}
-   ${mcr_data_glue_ros_INCLUDE_DIRS}
+   ${mcr_robinson_INCLUDE_DIRS}
+   ${mcr_robinson_ros_INCLUDE_DIRS}
    ${mir_gripper_controller_INCLUDE_DIRS}
    
 )
@@ -30,7 +30,7 @@ include_directories(
 link_directories(
   ${catkin_LIBRARY_DIRS}
   ${orocos_kdl_LIBRARY_DIRS}
-  ${mcr_data_glue_LIBRARY_DIRS}
+  ${mcr_robinson_LIBRARY_DIRS}
   ${mir_gripper_controller_DIRS} 
 )
 
@@ -42,7 +42,7 @@ add_executable(gripper_controller_node
 target_link_libraries(gripper_controller_node
   ${catkin_LIBRARIES}
   ${orocos_kdl_LIBRARIES}  
-  ${mcr_data_glue_ros_LIBRARIES}
+  ${mcr_robinson_ros_LIBRARIES}
   ${mir_gripper_controller_LIBRARIES} 
 )
 

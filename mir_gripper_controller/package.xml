@@ -12,13 +12,13 @@
   <build_depend>sensor_msgs</build_depend>
   <build_depend>brics_actuator</build_depend>
   <build_depend>roscpp</build_depend>
-  <build_depend>mcr_data_glue</build_depend>
+  <build_depend>mcr_robinson</build_depend>
   
   <run_depend>mir_manipulation_msgs</run_depend>
   <run_depend>rospy</run_depend>
   <run_depend>roscpp</run_depend>
   <run_depend>sensor_msgs</run_depend>
   <run_depend>brics_actuator</run_depend>
-  <run_depend>mcr_data_glue</run_depend>
+  <run_depend>mcr_robinson</run_depend>
   
 </package>

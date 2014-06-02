@@ -8,11 +8,11 @@
 #ifndef JOINTPOSITIONMONITORPROXY_H_
 #define JOINTPOSITIONMONITORPROXY_H_
 
-#include "mcr_data_glue/EventGlue.h"
+#include "mcr_robinson/EventGlue.h"
 
 #include <kdl/jntarray.hpp>
 
-#include "mcr_data_glue_ros/RosEventGlue.h"
+#include "mcr_robinson_ros/RosEventGlue.h"
 
 
 namespace mir_industrial {

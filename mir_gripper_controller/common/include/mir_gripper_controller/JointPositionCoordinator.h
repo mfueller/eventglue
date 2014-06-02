@@ -12,7 +12,7 @@
 #include <vector>
 #include <kdl/jntarray.hpp>
 
-#include "mcr_data_glue/EventGlue.h"
+#include "mcr_robinson/EventGlue.h"
 
 namespace mir_industrial {
 namespace manipulation {

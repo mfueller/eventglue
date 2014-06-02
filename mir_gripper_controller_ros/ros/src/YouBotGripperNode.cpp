@@ -16,7 +16,7 @@
 
 #include "ros/ros.h"
 
-#include "mcr_data_glue_ros/RosEventGlue.h"
+#include "mcr_robinson_ros/RosEventGlue.h"
 
 namespace mir_industrial {
 namespace manipulation {

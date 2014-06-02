@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 
-#include "mcr_data_glue/EventGlue.h"
+#include "mcr_robinson/EventGlue.h"
 
 #include <kdl/jntarray.hpp>
 

@@ -15,12 +15,12 @@
 #include <sensor_msgs/JointState.h>
 #include <kdl/jntarray.hpp>
 
-#include "mcr_data_glue/message_converter/MessageConverter.h"
-#include "mcr_data_glue_ros/message_converter/ros_msgs.h"
+#include "mcr_robinson/message_converter/MessageConverter.h"
+#include "mcr_robinson_ros/message_converter/ros_msgs.h"
 
 #include <iostream>
 
-#include "mcr_data_glue/EventGlue.h"
+#include "mcr_robinson/EventGlue.h"
 
 #include "RosPort.h"
 

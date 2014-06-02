@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(mir_gripper_controller)
 
-find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs brics_actuator mcr_data_glue)
+find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs brics_actuator mcr_robinson)
 find_package(eigen REQUIRED)
 find_package(orocos_kdl REQUIRED)
 
@@ -14,7 +14,7 @@ catkin_package(
     rospy
     sensor_msgs
     brics_actuator
-    mcr_data_glue
+    mcr_robinson
   INCLUDE_DIRS
     common/include
   LIBRARIES

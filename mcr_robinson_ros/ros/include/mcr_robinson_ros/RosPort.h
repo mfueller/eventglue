@@ -15,8 +15,8 @@
 #include <sensor_msgs/JointState.h>
 #include <kdl/jntarray.hpp>
 
-#include "mcr_data_glue/message_converter/MessageConverter.h"
-#include "mcr_data_glue_ros/message_converter/ros_msgs.h"
+#include "mcr_robinson/message_converter/MessageConverter.h"
+#include "mcr_robinson_ros/message_converter/ros_msgs.h"
 
 #define ROS_PORT_SOURCE(ROS_TOPIC, IN_TOPIC, TOPIC) \
 		RosEventGlue::port_from_ros_topic<ROS_TOPIC, IN_TOPIC>(TOPIC)
