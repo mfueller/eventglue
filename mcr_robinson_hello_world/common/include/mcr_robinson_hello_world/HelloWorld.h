@@ -32,6 +32,8 @@ public:
 
 	EventPortInput(stop);
 
+	EventPortInput(update);
+
 	DataPortInput(std::string, name);
 
 	DataPortOutput(std::string, answer);

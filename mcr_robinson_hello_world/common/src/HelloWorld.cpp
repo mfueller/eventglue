@@ -43,6 +43,10 @@ void HelloWorld::eventport_input_stop() {
 	this->state = IDLE;
 }
 
+void HelloWorld::eventport_input_update() {
+	this->update();
+}
+
 void HelloWorld::dataport_input_name(std::string name) {
 	this->name = name;
 	std::cout << "HelloWorld got name " << name << std::endl;

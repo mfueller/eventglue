@@ -39,6 +39,20 @@ HelloWorldNode::HelloWorldNode() {
 						DATAPORT_INPUT_ROS(std_msgs::String, std::string, "pout_answer")
 						);
 
+
+
+	// trigger update event on incomming data
+	DataPortEvent<std::string>* data_trigger = new DataPortEvent<std::string>(
+			EVENT_INPUT(&mcr_robinson::helloworld::HelloWorld::eventport_input_update, hello_world));
+
+	DATAPORT_OUTPUT_ROS(std_msgs::String, std::string, "pin_name")
+					.connect(
+							*data_trigger
+							);
+	//FIXME: delete data_trigger after shutdown
+
+
+
 	std::cout << "HelloWorldNode constructed" << std::endl;
 
 }
@@ -52,7 +66,7 @@ HelloWorldNode::~HelloWorldNode() {
 void HelloWorldNode::update() {
 	// call all used components
 	// will be replaced by the scheduler
-	this->hello_world->update();
+	//this->hello_world->update();
 }
 
 void HelloWorldNode::init() {

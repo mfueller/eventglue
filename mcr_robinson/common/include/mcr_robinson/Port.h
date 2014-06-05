@@ -19,6 +19,10 @@
 #define DataPortOutput(type_def, name) \
 		DataPortOutput<type_def>::type dataport_output_##name
 
+
+
+
+
 template <class T>
 class DataPortInput
 {
