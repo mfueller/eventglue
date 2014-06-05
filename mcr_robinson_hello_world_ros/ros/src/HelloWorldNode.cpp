@@ -14,20 +14,29 @@ HelloWorldNode::HelloWorldNode() {
 
 	hello_world = new mcr_robinson::helloworld::HelloWorld();
 
-	ROS_EVENT_SOURCE("event_in") >>
-			EVENT_SINK(&mcr_robinson::helloworld::HelloWorld::event_in, hello_world);
+	EVENT_OUTPUT_ROS("event_in", "e_start")
+			.connect(
+					EVENT_INPUT(&mcr_robinson::helloworld::HelloWorld::eventport_input_start, hello_world)
+					);
 
-	EVENT_SOURCE(hello_world->event_out) >>
-			ROS_EVENT_SINK("event_out");
+	EVENT_OUTPUT_ROS("event_in", "e_stop")
+			.connect(
+					EVENT_INPUT(&mcr_robinson::helloworld::HelloWorld::eventport_input_stop, hello_world)
+					);
 
-	ROS_PORT_SOURCE (std_msgs::String, std::string, "pin_name")
+	EVENT_OUTPUT(hello_world->eventport_output_done)
+			.connect(
+					EVENT_INPUT_ROS("event_out", "e_done")
+					);
+
+	DATAPORT_OUTPUT_ROS(std_msgs::String, std::string, "pin_name")
 				.connect(
-						PORT_SINK(&mcr_robinson::helloworld::HelloWorld::pin_name, hello_world)
+						DATAPORT_INPUT(&mcr_robinson::helloworld::HelloWorld::dataport_input_name, hello_world)
 						);
 
-	PORT_SOURCE(hello_world->pout_answer)
+	DATAPORT_OUTPUT(hello_world->dataport_output_answer)
 				.connect(
-						ROS_PORT_SINK(std_msgs::String, std::string, "pout_answer")
+						DATAPORT_INPUT_ROS(std_msgs::String, std::string, "pout_answer")
 						);
 
 	std::cout << "HelloWorldNode constructed" << std::endl;

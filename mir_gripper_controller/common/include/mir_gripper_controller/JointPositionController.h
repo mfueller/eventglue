@@ -35,9 +35,9 @@ protected:
 public:
 
 	//EVENT_OUT(JointPositionController, event_done);
-	EventSource event_out;
+	EventPortInput event_out;
 
-	PortSource<KDL::JntArray>::type pout_jntarray;
+	DataPortOutput<KDL::JntArray>::type pout_jntarray;
 
 	JointPositionController();
 

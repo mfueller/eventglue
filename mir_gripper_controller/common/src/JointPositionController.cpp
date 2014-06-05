@@ -37,13 +37,13 @@ void JointPositionController::step() {
 		if (this->joint_names.size() != this->target.data.rows()) {
 			std::cerr << "JointPositionController::step(): size of given joint names and joint positions are not equal" << std::endl;
 
-			this->event_out("e_error");
+			this->event_out();
 		}
 		std::cout << "JointPositionController::step(): writing joint positions" << std::endl;
 		this->pout_jntarray(this->target);
 
 		std::cout << "JointPositionController::step(): event->done" << std::endl;
-		this->event_out("e_done");
+		this->event_out();
 		this->state = IDLE;
 	} else if (this->state == STARTED) {
 		this->init();

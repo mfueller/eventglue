@@ -11,8 +11,6 @@
 namespace mcr_robinson {
 namespace helloworld {
 
-
-
 class HelloWorld {
 protected:
 
@@ -28,14 +26,15 @@ public:
 
 	virtual ~HelloWorld();
 
-	EventSource event_out;
+	EventPortOutput(done);
 
-	void event_in(std::string event);
+	EventPortInput(start);
 
-	void pin_name(std::string name);
+	EventPortInput(stop);
 
-	PortSource<std::string>::type pout_answer;
+	DataPortInput(std::string, name);
 
+	DataPortOutput(std::string, answer);
 
 	bool init();
 

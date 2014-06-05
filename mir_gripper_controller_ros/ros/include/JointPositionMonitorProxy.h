@@ -22,9 +22,9 @@ class JointPositionMonitorProxy {
 
 public:
 
-	EventTarget& event_in_target;
-	EventSource& event_out;
-	PortSource<KDL::JntArray>::type& pin_joint_position;
+	EventPortInput& event_in_target;
+	EventPortOutput& event_out;
+	DataPortOutput<KDL::JntArray>::type& pin_joint_position;
 
 	JointPositionMonitorProxy():
 			event_in_target(ROS_EVENT_SINK("joint_position_monitor/event/in")),

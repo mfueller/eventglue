@@ -3,6 +3,7 @@
 namespace mcr_robinson {
 namespace helloworld {
 
+int counter = 0;
 
 HelloWorld::HelloWorld() {
 	state = STARTED;
@@ -23,10 +24,10 @@ void HelloWorld::update() {
 
 	if (this->state == ACTIVE) {
 		std::stringstream ss;
-		ss << "Hello " << this->name << std::endl;
-		std::cout << "HelloWorld sending: " << ss.str() << std::endl;
-		pout_answer(ss.str());
-
+		ss << "Hello " << this->name << " " << counter++ << std::endl;
+		std::cout << " HelloWorld sending: " << ss.str() << std::endl;
+		dataport_output_answer(ss.str());
+		eventport_output_done();
 	}
 }
 
@@ -34,23 +35,18 @@ void HelloWorld::shutdown() {
 	this->state = SHUTDOWN;
 }
 
-void HelloWorld::event_in(std::string event) {
-	std::cout << "HelloWorld Receiving event " << event << std::endl;
-
-	if (event.compare("e_start") == 0) {
-		this->state = ACTIVE;
-		std::cout << "HelloWorld active" << std::endl;
-	} else if (event.compare("e_stop") == 0) {
-		this->state = IDLE;
-		std::cout << "HelloWorld idle" << std::endl;
-	}
+void HelloWorld::eventport_input_start() {
+	this->state = ACTIVE;
 }
 
-void HelloWorld::pin_name(std::string name) {
+void HelloWorld::eventport_input_stop() {
+	this->state = IDLE;
+}
+
+void HelloWorld::dataport_input_name(std::string name) {
 	this->name = name;
 	std::cout << "HelloWorld got name " << name << std::endl;
 }
-
 
 
 } /* namespace manipulation */

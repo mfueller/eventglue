@@ -5,17 +5,25 @@
 
 #include <string.h>
 
-#define EVENT_SINK(CLASS, OBJECT) \
-		boost::bind(CLASS, OBJECT, _1)
+#define EVENT_INPUT(CLASS, OBJECT) \
+		boost::bind(CLASS, OBJECT)
 
-#define EVENT_SOURCE(CMD) \
+#define EVENT_OUTPUT(CMD) \
 		CMD
 
-typedef PortSink<std::string>::type EventTarget;
-typedef PortSource<std::string>::type EventSource;
+typedef boost::function<void ()> 			EventPortInput ;
+
+typedef boost::signals2::signal<void ()> 	EventPortOutput ;
 
 
-inline EventSource& operator>>(EventSource& lhs, EventTarget const& rhs) {
+#define EventPortInput(name) \
+		void eventport_input_##name()
+
+#define EventPortOutput(name) \
+		EventPortOutput eventport_output_##name
+
+
+inline EventPortOutput& operator>>(EventPortOutput& lhs, EventPortInput const& rhs) {
 	lhs.connect(rhs);
 	return lhs;
 }

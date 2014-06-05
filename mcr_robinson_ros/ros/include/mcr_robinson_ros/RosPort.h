@@ -18,22 +18,14 @@
 #include "mcr_robinson/message_converter/MessageConverter.h"
 #include "mcr_robinson_ros/message_converter/ros_msgs.h"
 
-#define ROS_PORT_SOURCE(ROS_TOPIC, IN_TOPIC, TOPIC) \
+#define DATAPORT_OUTPUT_ROS(ROS_TOPIC, IN_TOPIC, TOPIC) \
 		RosEventGlue::port_from_ros_topic<ROS_TOPIC, IN_TOPIC>(TOPIC)
 
-#define ROS_PORT_SINK(ROS_TOPIC, IN_TOPIC, TOPIC) \
+#define DATAPORT_INPUT_ROS(ROS_TOPIC, IN_TOPIC, TOPIC) \
 		RosEventGlue::port_to_ros_topic<ROS_TOPIC, IN_TOPIC>(TOPIC)
 
-
-//#define PORT_SOURCE(CMD) \
-//		CMD
-//
-//#define PORT_SINK(CLASS, OBJECT) \
-//		boost::bind(CLASS, OBJECT, _1)
-
-
 template <typename ROS_TYPE, typename MY_TYPE>
-class RosPortSink : public PortSink<MY_TYPE>::type {
+class DataPortInputROS : public DataPortInput<MY_TYPE>::type {
 	std::string topic_name;
 	ros::Publisher publisher;
 
@@ -41,8 +33,8 @@ public:
 
 	//typename PortSink<MY_TYPE>::type ros_publisher;
 
-	RosPortSink(std::string topic_name) :
-		PortSink<MY_TYPE>::type(boost::bind(&RosPortSink<ROS_TYPE, MY_TYPE>::callback, this, _1)) {
+	DataPortInputROS(std::string topic_name) :
+		DataPortInput<MY_TYPE>::type(boost::bind(&DataPortInputROS<ROS_TYPE, MY_TYPE>::callback, this, _1)) {
 		std::cout << "RosPortSink::RosPortSink(topic): advertises: " << topic_name << std::endl;
 
 		ros::NodeHandle n("~");
@@ -52,7 +44,7 @@ public:
 
 	}
 
-	~RosPortSink() {
+	~DataPortInputROS() {
 		std::cout << "RosOutPort::~RosOutPort()"<<std::endl;
 		this->publisher.shutdown();
 	}
@@ -66,22 +58,22 @@ public:
 
 
 template <typename ROS_TYPE, typename MY_TYPE>
-class RosPortSource : public PortSource<MY_TYPE>::type {
+class DataPortOutputROS : public DataPortOutput<MY_TYPE>::type {
 	std::string topic_name;
 	ros::Subscriber subscriber;
 public:
 
 	//typename PortSource<MY_TYPE>::type ros_topic_signal;
 
-	RosPortSource(std::string topic_name) {
+	DataPortOutputROS(std::string topic_name) {
 		std::cout << "RosInPort::RosInPort(topic, name): registered to: " << topic_name << std::endl;
 		ros::NodeHandle n("~");
 		this->topic_name = topic_name;
 		this->subscriber = n.subscribe(this->topic_name, 1,
-				&RosPortSource::event_callback, this);
+				&DataPortOutputROS::event_callback, this);
 	}
 
-	~RosPortSource() {
+	~DataPortOutputROS() {
 		std::cout << "RosInPort::~RosInPort()"<<std::endl;
 		this->subscriber.shutdown();
 	}

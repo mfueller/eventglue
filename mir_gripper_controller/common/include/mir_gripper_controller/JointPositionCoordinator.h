@@ -21,13 +21,13 @@ class JointPositionCoordinator {
 public:
 
 	//EVENT_OUT(JointPositionCoordinator, event_status_done);
-	EventSource event_status_out;
+	EventPortInput event_status_out;
 
 	//EVENT_OUT(JointPositionCoordinator, event_cmd_joint_ctl_start);
-	EventSource event_cmd_joint_ctl_out;
+	EventPortInput event_cmd_joint_ctl_out;
 
 	//EVENT_OUT(JointPositionCoordinator, event_cmd_joint_monitors_start);
-	EventSource event_cmd_joint_monitors_out;
+	EventPortInput event_cmd_joint_monitors_out;
 
 	JointPositionCoordinator();
 

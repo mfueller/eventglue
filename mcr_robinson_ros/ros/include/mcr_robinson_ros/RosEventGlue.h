@@ -9,17 +9,17 @@ class RosEventGlue {
 
 public:
 
-	static EventSource& ros_event_source(std::string topic_name) {
+	static EventPortOutput& ros_event_source(std::string topic_name, std::string event_name) {
 
-		RosEventSource* event_source = new RosEventSource(topic_name);
+		EventPortOutputROS* event_source = new EventPortOutputROS(topic_name, event_name);
 		//ros_event_sources.push_back(event_source);
 
 		return *event_source;
 	}
 
-	static EventTarget& ros_event_sink(std::string topic_name) {
+	static EventPortInput& ros_event_sink(std::string topic_name, std::string event_name) {
 
-		RosEventSink* event_sink = new RosEventSink(topic_name);
+		EventPortInputROS* event_sink = new EventPortInputROS(topic_name, event_name);
 		//ros_event_sinks.push_back(event_sink);
 
 		return *event_sink;
@@ -27,9 +27,9 @@ public:
 
 
 	template<typename ROS_TYPE, typename MY_TYPE>
-		static typename PortSource<MY_TYPE>::type& port_from_ros_topic(std::string topic_name) {
+		static typename DataPortOutput<MY_TYPE>::type& port_from_ros_topic(std::string topic_name) {
 
-		RosPortSource<ROS_TYPE, MY_TYPE>* in_port = new RosPortSource<ROS_TYPE, MY_TYPE>(topic_name);
+		DataPortOutputROS<ROS_TYPE, MY_TYPE>* in_port = new DataPortOutputROS<ROS_TYPE, MY_TYPE>(topic_name);
 
 		//ros_in_ports.push_back(in_port);
 
@@ -37,9 +37,9 @@ public:
 	}
 
 	template<typename ROS_TYPE, typename MY_TYPE>
-		static typename PortSink<MY_TYPE>::type& port_to_ros_topic(std::string topic_name) {
+		static typename DataPortInput<MY_TYPE>::type& port_to_ros_topic(std::string topic_name) {
 
-		RosPortSink<ROS_TYPE, MY_TYPE>* in_port(new RosPortSink<ROS_TYPE, MY_TYPE>(topic_name));
+		DataPortInputROS<ROS_TYPE, MY_TYPE>* in_port(new DataPortInputROS<ROS_TYPE, MY_TYPE>(topic_name));
 
 		//ros_out_ports.push_back(in_port);
 

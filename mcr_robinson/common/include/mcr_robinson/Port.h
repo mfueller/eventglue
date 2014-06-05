@@ -6,14 +6,21 @@
 #include <boost/bind.hpp>
 #include <boost/signals2.hpp>
 
-#define PORT_SOURCE(CMD) \
+#define DATAPORT_OUTPUT(CMD) \
 		CMD
 
-#define PORT_SINK(CLASS, OBJECT) \
+#define DATAPORT_INPUT(CLASS, OBJECT) \
 		boost::bind(CLASS, OBJECT, _1)
 
+
+#define DataPortInput(type_def, name) \
+		void dataport_input_##name(type_def name)
+
+#define DataPortOutput(type_def, name) \
+		DataPortOutput<type_def>::type dataport_output_##name
+
 template <class T>
-class PortSink
+class DataPortInput
 {
 public:
     typedef boost::function<void (T)> type;
@@ -21,8 +28,7 @@ public:
 
 
 template <class T>
-class PortSource
-{
+class DataPortOutput{
 public:
     typedef boost::signals2::signal<void (T)> type;
 
@@ -30,7 +36,7 @@ public:
 
 
 template <class T>
-inline typename PortSource<T>::type& operator>>(typename PortSource<T>::type& lhs, const typename PortSink<T>::type& rhs) {
+inline typename DataPortOutput<T>::type& operator>>(typename DataPortOutput<T>::type& lhs, const typename DataPortInput<T>::type& rhs) {
 	lhs.connect(rhs);
 	return lhs;
 };
