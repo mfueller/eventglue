@@ -8,41 +8,44 @@
 #include <kdl/jntarray.hpp>
 
 
-namespace mcr_robinson {
-namespace helloworld {
+namespace mcr_robinson
+{
+namespace helloworld
+{
 
-class HelloWorld {
-protected:
+class HelloWorld
+{
+    protected:
 
-	enum State {STARTED, IDLE, ACTIVE, SHUTDOWN};
+        enum State {STARTED, IDLE, ACTIVE, SHUTDOWN};
 
-	State state;
+        State state;
 
-	std::string name;
+        std::string name;
 
-public:
+    public:
 
-	HelloWorld();
+        HelloWorld();
 
-	virtual ~HelloWorld();
+        virtual ~HelloWorld();
 
-	EventPortOutput(done);
+        EventPortOutput(done);
 
-	EventPortInput(start);
+        EventPortInput(start);
 
-	EventPortInput(stop);
+        EventPortInput(stop);
 
-	EventPortInput(update);
+        EventPortInput(update);
 
-	DataPortInput(std::string, name);
+        DataPortInput(std::string, name);
 
-	DataPortOutput(std::string, answer);
+        DataPortOutput(std::string, answer);
 
-	bool init();
+        bool init();
 
-	void update();
+        void update();
 
-	void shutdown();
+        void shutdown();
 };
 
 } /* namespace mcr_robinson */

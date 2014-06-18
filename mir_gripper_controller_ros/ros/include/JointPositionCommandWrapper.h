@@ -16,25 +16,28 @@
 
 #include "brics_actuator/JointPositions.h"
 
-namespace mir_industrial {
-namespace manipulation {
+namespace mir_industrial
+{
+namespace manipulation
+{
 
-class JointPositionCommandWrapper {
-protected:
+class JointPositionCommandWrapper
+{
+    protected:
 
-	ros::Publisher pub_cmd_values;
+        ros::Publisher pub_cmd_values;
 
-	std::vector<std::string> joint_names;
+        std::vector<std::string> joint_names;
 
-public:
-	JointPositionCommandWrapper();
-	virtual ~JointPositionCommandWrapper();
+    public:
+        JointPositionCommandWrapper();
+        virtual ~JointPositionCommandWrapper();
 
-	void setJointNames(std::vector<std::string> joint_names);
+        void setJointNames(std::vector<std::string> joint_names);
 
-	void commandJointPositions(KDL::JntArray joint_positions);
+        void commandJointPositions(KDL::JntArray joint_positions);
 
-	void init();
+        void init();
 
 };
 

@@ -17,42 +17,45 @@
 #include <kdl/jntarray.hpp>
 
 
-namespace mir_industrial {
-namespace manipulation {
+namespace mir_industrial
+{
+namespace manipulation
+{
 
 
 
-class JointPositionController {
-protected:
+class JointPositionController
+{
+    protected:
 
-	KDL::JntArray target;
-	std::vector<std::string> joint_names;
+        KDL::JntArray target;
+        std::vector<std::string> joint_names;
 
-	enum State {STARTED, IDLE, ACTIVE};
+        enum State {STARTED, IDLE, ACTIVE};
 
-	State state;
+        State state;
 
-public:
+    public:
 
-	//EVENT_OUT(JointPositionController, event_done);
-	EventPortInput event_out;
+        //EVENT_OUT(JointPositionController, event_done);
+        EventPortInput event_out;
 
-	DataPortOutput<KDL::JntArray>::type pout_jntarray;
+        DataPortOutput<KDL::JntArray>::type pout_jntarray;
 
-	JointPositionController();
+        JointPositionController();
 
-	virtual ~JointPositionController();
+        virtual ~JointPositionController();
 
-	//EVENT_IN(JointPositionController, e_start);
-	void e_in(std::string event);
+        //EVENT_IN(JointPositionController, e_start);
+        void e_in(std::string event);
 
-	void pin_target_position(KDL::JntArray joint_positions);
+        void pin_target_position(KDL::JntArray joint_positions);
 
-	void pin_joint_names(std::vector<std::string> joint_names);
+        void pin_joint_names(std::vector<std::string> joint_names);
 
-	void step();
+        void step();
 
-	bool init();
+        bool init();
 };
 
 } /* namespace manipulation */

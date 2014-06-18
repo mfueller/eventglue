@@ -19,26 +19,29 @@
 
 #include "JointPositionMonitorProxy.h"
 
-namespace mir_industrial {
-namespace manipulation {
+namespace mir_industrial
+{
+namespace manipulation
+{
 
-class YouBotGripperNode {
-protected:
+class YouBotGripperNode
+{
+    protected:
 
-	JointPositionController* joint_position_controller;
+        JointPositionController *joint_position_controller;
 
-	JointPositionCoordinator* joint_position_coordinator;
+        JointPositionCoordinator *joint_position_coordinator;
 
-	JointPositionMonitorProxy* joint_position_monitor;
+        JointPositionMonitorProxy *joint_position_monitor;
 
-	JointPositionCommandWrapper* position_command_wrapper;
+        JointPositionCommandWrapper *position_command_wrapper;
 
-public:
-	YouBotGripperNode();
+    public:
+        YouBotGripperNode();
 
-	virtual ~YouBotGripperNode();
+        virtual ~YouBotGripperNode();
 
-	void update();
+        void update();
 
 };
 

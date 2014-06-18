@@ -7,22 +7,23 @@
 
 #include "mcr_robinson/EventGlue.h"
 
-class HelloWorldNode {
-protected:
+class HelloWorldNode
+{
+    protected:
 
 
-public:
-	mcr_robinson::helloworld::HelloWorld* hello_world;
+    public:
+        mcr_robinson::helloworld::HelloWorld *hello_world;
 
-	HelloWorldNode();
+        HelloWorldNode();
 
-	virtual ~HelloWorldNode();
+        virtual ~HelloWorldNode();
 
-	void update();
+        void update();
 
-	void init();
+        void init();
 
-	void shutdown();
+        void shutdown();
 
 };
 

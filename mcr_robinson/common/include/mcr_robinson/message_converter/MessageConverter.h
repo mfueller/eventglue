@@ -6,9 +6,10 @@
 #include <ros/ros.h>
 
 template <typename FROM, typename TO>
-class MessageConverter {
-public:
-	static TO convert(FROM msg);
+class MessageConverter
+{
+    public:
+        static TO convert(FROM msg);
 };
 
 /*
