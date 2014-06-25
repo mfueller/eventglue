@@ -15,17 +15,17 @@ using namespace boost::python;
 
 #include "Robinson.h"
 
-BOOST_PYTHON_MODULE(mcr_robinson_python)
+BOOST_PYTHON_MODULE(libmcr_robinson_python)
 {
 
-    class_<DataPortOutputPython<std::string>, boost::noncopyable>("DataPortOutputPython_String")
+    class_<DataPortOutputPython<std::string>, boost::noncopyable>("DataPortOutputPython_stdString")
             .def("callback", &DataPortOutputPython<std::string>::callback)
         ;
-
+/*
     class_<DataPortInputPython<std::string>, boost::noncopyable>("DataPortInputPython_String")
                   .def("callback", &DataPortInputPython<std::string>::callback)
               ;
-
+*/
 //    class_<DataPortInputPython<Person>, boost::noncopyable>("DataPortInputPython_Person")
 //                  .def("callback", &DataPortInputPython<Person>::callback)
 //              ;

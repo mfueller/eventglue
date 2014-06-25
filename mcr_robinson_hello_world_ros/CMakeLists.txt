@@ -55,8 +55,21 @@ target_link_libraries(hello_world_node
   ${catkin_LIBRARIES}
   ${mcr_robinson_ros_LIBRARIES}
   ${mcr_robinson_hello_world_LIBRARIES} 
+)
+
+
+add_executable(hello_world_node_python
+  ros/src/HelloPythonNode.cpp
+)
+
+target_link_libraries(hello_world_node_python
+  ${catkin_LIBRARIES}
+  ${mcr_robinson_ros_LIBRARIES}
+  ${mcr_robinson_hello_world_LIBRARIES} 
   
 ### required for the python example  
+  ${mcr_robinson_python_LIBRARIES}
+  mcr_robinson_python
   ${Boost_LIBRARIES}
   ${PYTHON_LIBRARIES}
 ##

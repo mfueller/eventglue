@@ -28,11 +28,8 @@ int main(int argc, char *argv[]) {
 			DATAPORT_INPUT(&mcr_robinson::helloworld::IHelloWorld::dataport_input_name, hello_world)
 	);
 
-	std::cout << "empty: " << hello_world->dataport_output_answer.empty() << std::endl;
 	DATAPORT_OUTPUT(hello_world->dataport_output_answer).connect(
 			DATAPORT_INPUT_ROS(std_msgs::String, std::string, "pout_answer"));
-	std::cout << "empty: " << hello_world->dataport_output_answer.empty() << std::endl;
-
 
 
 

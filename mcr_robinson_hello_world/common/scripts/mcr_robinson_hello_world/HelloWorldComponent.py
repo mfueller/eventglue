@@ -6,25 +6,31 @@ class HelloWorld:
     classdocs
     '''
 
-    pout_string = PortOutput()
+    pout_answer = PortOutput()
     
+    pout_event_done = PortOutput()
     
     def __init__(self):
         '''
         Constructor
         '''
-        print("HelloWorldComponent (python) initialized")
+        self.counter = 0
+        print("HelloWorld (python) initialized")
         
     def update(self):
-        msg = str("Hello " + self._pin_name)
-        self.pout_string(msg)
-        print("UPDATE called: " + msg)
+        msg = str("Hello " + self._pin_name + " " + str(self.counter))
+        self.counter += 1
+        self.pout_answer(msg)
+        self.pout_event_done()
+        print("HelloWorld.update: " + msg)
         
     _pin_name = ""
     def pin_name(self, name):
-        print("pin_name: " + name)
+        print("HelloWorld.pin_name: " + name)
         self._pin_name = name
+
+    def init(self):
+        print("HelloWorld.init")
         
-    def pin_test(self, test):
-        print("pin_test: " + str(test.name) + "-" + str(test.year))
-        self._test = test
+    def shutdown(self):
+        print("HelloWorld.shutdown")

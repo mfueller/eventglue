@@ -27,6 +27,15 @@ public:
 		_main_module = import("__main__");
 		_main_dict = _main_module.attr("__dict__");
 
+		PyObject* sysPath = PySys_GetObject("path");
+		PyList_Insert( sysPath, 0, PyBytes_FromString("/home/matthias/ros_workspace/mas-industrial/devel/lib"));
+
+		try {
+			boost::python::exec("import libmcr_robinson_python", _main_dict);
+
+		} catch (error_already_set) {
+					PyErr_Print();
+				}
 	}
 
 	virtual ~RobinsonPythonInterpreter() {
