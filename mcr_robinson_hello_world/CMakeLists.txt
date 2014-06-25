@@ -8,6 +8,8 @@ find_package(orocos_kdl REQUIRED)
 set( CMAKE_CXX_FLAGS "-Wno-enum-compare " )
 set( CMAKE_BUILD_TYPE Debug)
 
+catkin_python_setup()
+
 catkin_package(
   CATKIN_DEPENDS
     roscpp

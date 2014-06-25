@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <name>mcr_robinson_python</name>
+  <version>0.0.0</version>
+  <description>data glue code</description>
+
+  <maintainer email="matthias.fueller@h-brs.de">Matthias Füller</maintainer>
+  <license>GPLv3</license>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>brics_actuator</build_depend>
+  <build_depend>roscpp</build_depend>
+  
+  <run_depend>rospy</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>brics_actuator</run_depend>
+  
+</package>

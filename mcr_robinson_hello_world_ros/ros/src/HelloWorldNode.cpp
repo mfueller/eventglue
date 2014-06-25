@@ -1,3 +1,4 @@
+
 #include "HelloWorldNode.h"
 
 
@@ -12,8 +13,22 @@
 HelloWorldNode::HelloWorldNode()
 {
 
+	python = new RobinsonPythonInterpreter();
+	//boost::python::exec("import libmcr_robinson_python as robinson", nm);
+
+
+	try {
+		//boost::python::exec("from mcr_robinson_hello_world.HelloWorldComponent import HelloWorld", python->main_dict());
+		//boost::python::object pythonComponent = eval("HelloWorld()", python->main_dict());
+
+
+	} catch (error_already_set) {
+		PyErr_Print();
+	}
 
     hello_world = new mcr_robinson::helloworld::HelloWorld();
+
+    py_hello_world = python->loadComponent("HelloWorld", "mcr_robinson_hello_world.HelloWorldComponent");
 
     EVENT_OUTPUT_ROS("event_in", "e_start")
     .connect(
@@ -63,6 +78,7 @@ HelloWorldNode::HelloWorldNode()
 HelloWorldNode::~HelloWorldNode()
 {
     delete hello_world;
+    delete python;
 }
 
 void HelloWorldNode::update()
@@ -108,7 +124,6 @@ int main(int argc, char *argv[])
     }
 
     hello_world_node.shutdown();
-
 
     return 0;
 }
