@@ -1,14 +1,14 @@
 
-from mcr_robinson_python.DataPort import PortOutput
+from mcr_robinson_python.DataPort import DataPortOutput, EventPortOutput
 
 class HelloWorld:
     '''
     classdocs
     '''
 
-    pout_answer = PortOutput()
+    pout_answer = DataPortOutput()
     
-    pout_event_done = PortOutput()
+    eventport_output_done = EventPortOutput()
     
     def __init__(self):
         '''
@@ -21,7 +21,7 @@ class HelloWorld:
         msg = str("Hello " + self._pin_name + " " + str(self.counter))
         self.counter += 1
         self.pout_answer(msg)
-        self.pout_event_done()
+        self.eventport_output_done()
         print("HelloWorld.update: " + msg)
         
     _pin_name = ""

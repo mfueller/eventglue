@@ -5,7 +5,7 @@ find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs brics_actuator mcr_ro
 find_package(eigen REQUIRED)
 find_package(orocos_kdl REQUIRED)
 
-#catkin_python_setup()
+catkin_python_setup()
 set( CMAKE_CXX_FLAGS "-Wno-enum-compare " )
 
 catkin_package(
