@@ -14,7 +14,7 @@
 
 
 #define DataPortInput(type_def, name) \
-    void dataport_input_##name(type_def name)
+    virtual void dataport_input_##name(type_def name)
 
 #define DataPortOutput(type_def, name) \
     DataPortOutput<type_def>::type dataport_output_##name

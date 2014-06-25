@@ -1,19 +1,14 @@
-#ifndef HELLO_WORLD_H_
-#define HELLO_WORLD_H_
+#ifndef HELLO_WORLD_IMPL_H_
+#define HELLO_WORLD_IMPL_H_
 
-#include <string>
-
-#include "mcr_robinson/EventGlue.h"
-
-#include <kdl/jntarray.hpp>
-
+#include "IHelloWorld.h"
 
 namespace mcr_robinson
 {
 namespace helloworld
 {
 
-class HelloWorld
+class HelloWorldImpl : public IHelloWorld
 {
     protected:
 
@@ -25,9 +20,9 @@ class HelloWorld
 
     public:
 
-        HelloWorld();
+        HelloWorldImpl();
 
-        virtual ~HelloWorld();
+        virtual ~HelloWorldImpl();
 
         EventPortOutput(done);
 
@@ -41,11 +36,11 @@ class HelloWorld
 
         DataPortOutput(std::string, answer);
 
-        bool init();
+        virtual bool init();
 
-        void update();
+        virtual void update();
 
-        void shutdown();
+        virtual void shutdown();
 };
 
 } /* namespace mcr_robinson */

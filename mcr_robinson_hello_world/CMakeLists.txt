@@ -37,7 +37,7 @@ link_directories(
 )
 
 add_library(helloworld
-  common/src/HelloWorld.cpp
+  common/src/HelloWorldImpl.cpp
 )
 
 target_link_libraries(helloworld

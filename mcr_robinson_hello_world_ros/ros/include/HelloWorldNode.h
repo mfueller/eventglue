@@ -5,7 +5,7 @@
 
 #include "ros/ros.h"
 
-#include "mcr_robinson_hello_world/HelloWorld.h"
+#include "mcr_robinson_hello_world/IHelloWorld.h"
 
 #include "mcr_robinson/EventGlue.h"
 
@@ -18,7 +18,7 @@ class HelloWorldNode
 	boost::python::object* py_hello_world;
 
     public:
-        mcr_robinson::helloworld::HelloWorld *hello_world;
+        mcr_robinson::helloworld::IHelloWorld *hello_world;
 
         HelloWorldNode();
 

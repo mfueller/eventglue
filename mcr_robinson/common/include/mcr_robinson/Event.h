@@ -17,7 +17,7 @@ typedef boost::signals2::signal<void ()> 	EventPortOutput ;
 
 
 #define EventPortInput(name) \
-    void eventport_input_##name()
+    virtual void eventport_input_##name()
 
 #define EventPortOutput(name) \
     EventPortOutput eventport_output_##name

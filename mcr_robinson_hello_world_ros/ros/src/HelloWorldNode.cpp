@@ -1,6 +1,7 @@
 
 #include "HelloWorldNode.h"
 
+#include "mcr_robinson_hello_world/HelloWorldImpl.h"
 
 #include <iostream>
 
@@ -26,18 +27,18 @@ HelloWorldNode::HelloWorldNode()
 		PyErr_Print();
 	}
 
-    hello_world = new mcr_robinson::helloworld::HelloWorld();
+    hello_world = new mcr_robinson::helloworld::HelloWorldImpl();
 
     py_hello_world = python->loadComponent("HelloWorld", "mcr_robinson_hello_world.HelloWorldComponent");
 
     EVENT_OUTPUT_ROS("event_in", "e_start")
     .connect(
-        EVENT_INPUT(&mcr_robinson::helloworld::HelloWorld::eventport_input_start, hello_world)
+        EVENT_INPUT(&mcr_robinson::helloworld::IHelloWorld::eventport_input_start, hello_world)
     );
 
     EVENT_OUTPUT_ROS("event_in", "e_stop")
     .connect(
-        EVENT_INPUT(&mcr_robinson::helloworld::HelloWorld::eventport_input_stop, hello_world)
+        EVENT_INPUT(&mcr_robinson::helloworld::IHelloWorld::eventport_input_stop, hello_world)
     );
 
     EVENT_OUTPUT(hello_world->eventport_output_done)
@@ -47,7 +48,7 @@ HelloWorldNode::HelloWorldNode()
 
     DATAPORT_OUTPUT_ROS(std_msgs::String, std::string, "pin_name")
     .connect(
-        DATAPORT_INPUT(&mcr_robinson::helloworld::HelloWorld::dataport_input_name, hello_world)
+        DATAPORT_INPUT(&mcr_robinson::helloworld::IHelloWorld::dataport_input_name, hello_world)
     );
 
     DATAPORT_OUTPUT(hello_world->dataport_output_answer)
@@ -59,7 +60,7 @@ HelloWorldNode::HelloWorldNode()
 
     // trigger update event on incomming data
     DataPortEvent<std::string> *data_trigger = new DataPortEvent<std::string>(
-        EVENT_INPUT(&mcr_robinson::helloworld::HelloWorld::eventport_input_update, hello_world));
+        EVENT_INPUT(&mcr_robinson::helloworld::IHelloWorld::eventport_input_update, hello_world));
 
     DATAPORT_OUTPUT_ROS(std_msgs::String, std::string, "pin_name")
     .connect(
