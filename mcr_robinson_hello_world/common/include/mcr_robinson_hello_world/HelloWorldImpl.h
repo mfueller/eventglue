@@ -10,31 +10,23 @@ namespace helloworld
 
 class HelloWorldImpl : public IHelloWorld
 {
-    protected:
-
-        enum State {STARTED, IDLE, ACTIVE, SHUTDOWN};
-
-        State state;
+protected:
 
         std::string name;
 
-    public:
+public:
 
         HelloWorldImpl();
 
         virtual ~HelloWorldImpl();
 
-        EventPortOutput(done);
-
-        EventPortInput(start);
-
-        EventPortInput(stop);
-
-        EventPortInput(update);
+        // output ports shouldnt be added a second time
+        //EventPortOutput(done);
 
         DataPortInput(std::string, name);
 
-        DataPortOutput(std::string, answer);
+        // output ports shouldnt be added a second time
+        //DataPortOutput(std::string, answer);
 
         virtual bool init();
 
@@ -46,4 +38,4 @@ class HelloWorldImpl : public IHelloWorld
 } /* namespace mcr_robinson */
 } /* namespace helloworld */
 
-#endif /* HELLO_WORLD_H_ */
+#endif /* HELLO_WORLD_IMPL_H_ */

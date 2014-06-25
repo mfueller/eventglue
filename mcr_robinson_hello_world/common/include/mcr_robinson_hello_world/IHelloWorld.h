@@ -17,10 +17,6 @@ class IHelloWorld
 {
     protected:
 
-        enum State {STARTED, IDLE, ACTIVE, SHUTDOWN};
-
-        State state;
-
         std::string name;
 
     public:
@@ -30,12 +26,6 @@ class IHelloWorld
         virtual ~IHelloWorld() {}
 
         EventPortOutput(done);
-
-        EventPortInput(start) = 0;
-
-        EventPortInput(stop) = 0;
-
-        EventPortInput(update) = 0;
 
         DataPortInput(std::string, name) = 0;
 
