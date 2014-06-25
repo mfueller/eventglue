@@ -5,8 +5,6 @@ set(Python_ADDITIONAL_VERSIONS 3.2)
 
 find_package(eigen REQUIRED)
 
-catkin_python_setup()
-
 
 set( CMAKE_CXX_FLAGS "-Wno-enum-compare " )
 set( CMAKE_BUILD_TYPE Debug)

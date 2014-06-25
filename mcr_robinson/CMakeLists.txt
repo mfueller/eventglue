@@ -5,7 +5,8 @@ project(mcr_robinson)
 #find_package(eigen REQUIRED)
 #find_package(orocos_kdl REQUIRED)
 
-#catkin_python_setup()
+catkin_python_setup()
+
 set( CMAKE_CXX_FLAGS "-Wno-enum-compare " )
 set( CMAKE_BUILD_TYPE Debug)
 catkin_package(
