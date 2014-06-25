@@ -1,30 +1,30 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(mcr_robinson_hello_world_ros)
 
+###### only required for the python example
 set(Python_ADDITIONAL_VERSIONS 3.2)
 find_package(Boost COMPONENTS system filesystem unit_test_framework python-py32 REQUIRED)
 find_package(PythonLibs REQUIRED)
+######
 
-find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs brics_actuator mcr_robinson_hello_world mcr_robinson_ros mcr_robinson_python)
-find_package(eigen REQUIRED)
-find_package(orocos_kdl REQUIRED)
 
+find_package(catkin REQUIRED COMPONENTS roscpp mcr_robinson_hello_world mcr_robinson_ros mcr_robinson_python)
+
+
+## debugging...
 set( CMAKE_CXX_FLAGS "-Wno-enum-compare " )
 set( CMAKE_BUILD_TYPE Debug)
 
 
-
+# python example
 catkin_python_setup()
+
 
 catkin_package(
   CATKIN_DEPENDS
     roscpp
-    mir_manipulation_msgs
     rospy
-    sensor_msgs
-    brics_actuator
     mcr_robinson_python
-    
 )
 
 include_directories(
@@ -33,14 +33,16 @@ include_directories(
    ${mcr_robinson_INCLUDE_DIRS}
    ${mcr_robinson_ros_INCLUDE_DIRS}
    ${mcr_robinson_hello_world_INCLUDE_DIRS}
+
+#### required for the python example
    ${mcr_robinson_python_INCLUDE_DIRS}
    ${Boost_INCLUDE_DIRS}
    ${PYTHON_INCLUDE_DIRS}
+####
 )
 
 link_directories(
   ${catkin_LIBRARY_DIRS}
-  ${orocos_kdl_LIBRARY_DIRS}
   ${mcr_robinson_LIBRARY_DIRS}
   ${mcr_robinson_hello_world_DIRS} 
 )
@@ -51,11 +53,13 @@ add_executable(hello_world_node
 
 target_link_libraries(hello_world_node
   ${catkin_LIBRARIES}
-  ${orocos_kdl_LIBRARIES}  
   ${mcr_robinson_ros_LIBRARIES}
   ${mcr_robinson_hello_world_LIBRARIES} 
-   ${Boost_LIBRARIES}
-    ${PYTHON_LIBRARIES}
+  
+### required for the python example  
+  ${Boost_LIBRARIES}
+  ${PYTHON_LIBRARIES}
+##
 )
 
 

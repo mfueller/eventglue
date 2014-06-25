@@ -5,9 +5,6 @@
 
 #include "mcr_robinson/EventGlue.h"
 
-#include <kdl/jntarray.hpp>
-
-
 namespace mcr_robinson
 {
 namespace helloworld
