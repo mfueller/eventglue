@@ -10,6 +10,7 @@ find_package(PythonLibs REQUIRED)
 
 find_package(catkin REQUIRED COMPONENTS roscpp mcr_robinson_hello_world mcr_robinson_ros mcr_robinson_python)
 
+find_package(Eigen REQUIRED)
 
 ## debugging...
 set( CMAKE_CXX_FLAGS "-Wno-enum-compare " )
@@ -34,10 +35,13 @@ include_directories(
    ${mcr_robinson_ros_INCLUDE_DIRS}
    ${mcr_robinson_hello_world_INCLUDE_DIRS}
 
+   ${EIGEN_INCLUDE_DIRS}
+
 #### required for the python example
    ${mcr_robinson_python_INCLUDE_DIRS}
    ${Boost_INCLUDE_DIRS}
    ${PYTHON_INCLUDE_DIRS}
+
 ####
 )
 
